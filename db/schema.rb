@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018013616) do
+ActiveRecord::Schema.define(version: 20161020002156) do
 
   create_table "robots", force: :cascade do |t|
     t.datetime "created_at",                         null: false
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 20161018013616) do
     t.decimal  "boundary_end_lat"
     t.decimal  "boundary_end_lng"
     t.boolean  "is_running",         default: false
+    t.decimal  "latitude"
+    t.decimal  "longitude"
   end
 
 end
