@@ -5,6 +5,7 @@ class ApiController < ApplicationController
 	# curl -X POST -H "Content-Type: application/json" 
 	# -d '{"robotID":1, "startLat":40.444585, "startLng": -79.942905, "endLat": 40.441273, "endLng": -79.943371}'
 	# localhost:3000/api/boundary
+	# https://obscure-spire-79030.herokuapp.com/api/boundary
 	# Params: robotID, startLat, startLng, endLat, endLng
 	def set_boundary
 
@@ -25,6 +26,7 @@ class ApiController < ApplicationController
 	end
 
 	# curl -X GET localhost:3000/api/boundary?robotID=1
+	# curl -X GET https://obscure-spire-79030.herokuapp.com/api/boundary?robotID=1
 	# Params: robotID
 	def get_boundary
 
@@ -42,6 +44,7 @@ class ApiController < ApplicationController
 	end
 
 	# curl -X POST -H "Content-Type: application/json" -d '{"robotID":1, "isRunning":true}' localhost:3000/api/running
+	# curl -X POST -H "Content-Type: application/json" -d '{"robotID":1, "isRunning":true}' https://obscure-spire-79030.herokuapp.com/api/running
 	# Params: robotID, isRunning
 	def set_running
 
@@ -59,6 +62,7 @@ class ApiController < ApplicationController
 	end
 
 	# curl -X GET localhost:3000/api/running?robotID=1
+	# curl -X GET https://obscure-spire-79030.herokuapp.com/api/running?robotID=1
 	# Params: robotID
 	def get_running
 
@@ -78,6 +82,7 @@ class ApiController < ApplicationController
 	# curl -X POST -H "Content-Type: application/json" 
 	# -d '{"robotID":1, "lat": 40.443505, "lng": -79.942933}'
 	# localhost:3000/api/location
+	# https://obscure-spire-79030.herokuapp.com/api/location
 	# Params: robotID, lat, lng
 	def set_location
 
@@ -96,6 +101,7 @@ class ApiController < ApplicationController
 	end
 
 	# curl -X GET localhost:3000/api/location?robotID=1
+	# curl -X GET https://obscure-spire-79030.herokuapp.com/api/location?robotID=1
 	# Params: robotID
 	def get_location
 
