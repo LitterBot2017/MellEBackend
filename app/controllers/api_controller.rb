@@ -118,4 +118,45 @@ class ApiController < ApplicationController
 
 	end
 
+	# curl -X POST -H "Content-Type: application/json" 
+	# -d '{"robotID":1, "lat": 40.443505, "lng": -79.942933, "batteryLevel": 100, "signalStrength": 100, "binFullness": 0 }'
+	# localhost:3000/api/heartbeat
+	# https://obscure-spire-79030.herokuapp.com/api/heartbeat
+	# Params: robotID, lat, lng, batteryLevel, signalStrength, binFullness
+	def set_heartbeat
+
+		robot = Robot.find_by(:id => params[:robotID])
+
+		if robot
+			robot.update!(
+				:latitude => params[:lat],
+				:longitude => params[:lng],
+				:battery_level => params[:batteryLevel],
+				:signal_strength => params[:signalStrength],
+				:bin_fullness => params[:binFullness])
+
+			render :nothing => true, :status => 200 and return
+		else
+			render :nothing => true, :status => 400 and return
+		end
+
+	end
+
+	# curl -X GET localhost:3000/api/heartbeat?robotID=1
+	# curl -X GET https://obscure-spire-79030.herokuapp.com/api/heartbeat?robotID=1
+	# Params: robotID
+	def get_heartbeat
+
+		@robot = Robot.find_by(:id => params[:robotID])
+
+		if @robot
+			
+			render :file => "api/get_heartbeat.json.erb",
+				:content_type => 'application/json',
+				:status => 200 and return
+		else
+			render :nothing => true, :status => 400 and return
+		end
+
+	end
 end

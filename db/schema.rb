@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020002156) do
+ActiveRecord::Schema.define(version: 20161029173147) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "robots", force: :cascade do |t|
     t.datetime "created_at",                         null: false
@@ -23,6 +26,9 @@ ActiveRecord::Schema.define(version: 20161020002156) do
     t.boolean  "is_running",         default: false
     t.decimal  "latitude"
     t.decimal  "longitude"
+    t.integer  "battery_level"
+    t.integer  "signal_strength"
+    t.integer  "bin_fullness"
   end
 
 end
