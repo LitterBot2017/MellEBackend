@@ -1,8 +1,23 @@
 {
 	"robotID": <%= @robot.id %>,
-	"latitude": <%= @robot.latitude %>,
-	"longitude": <%= @robot.longitude %>,
 	"batteryLevel": <%= @robot.battery_level %>,
 	"signalStrength": <%= @robot.signal_strength %>,
-	"binFullness": <%= @robot.bin_fullness %>
+	"binFullness": <%= @robot.bin_fullness %>,
+	"currentLatitude": <%= @robot.current_location.latitude %>,
+	"currentLongitude": <%= @robot.current_location.longitude %>,
+
+	<% if @with_path %>
+	
+	"path": [
+	<% locationIndex = 0 %>
+	<% @robot.locations.each do |location| %>
+
+		"latitude": <%= location.latitude %>,
+		"longitude": <%= location.longitude %>,
+
+		<% locationIndex = locationIndex + 1 %>
+		<%= locationIndex == @robot.locations.count ? "}" : "}," %>
+	<% end %>
+	]
+	<% end %>
 }

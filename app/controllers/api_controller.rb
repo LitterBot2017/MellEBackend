@@ -80,45 +80,6 @@ class ApiController < ApplicationController
 	end
 
 	# curl -X POST -H "Content-Type: application/json" 
-	# -d '{"robotID":1, "lat": 40.443505, "lng": -79.942933}'
-	# localhost:3000/api/location
-	# https://obscure-spire-79030.herokuapp.com/api/location
-	# Params: robotID, lat, lng
-	def set_location
-
-		robot = Robot.find_by(:id => params[:robotID])
-
-		if robot
-			robot.update!(
-				:latitude => params[:lat],
-				:longitude => params[:lng])
-
-			render :nothing => true, :status => 200 and return
-		else
-			render :nothing => true, :status => 400 and return
-		end
-
-	end
-
-	# curl -X GET localhost:3000/api/location?robotID=1
-	# curl -X GET https://obscure-spire-79030.herokuapp.com/api/location?robotID=1
-	# Params: robotID
-	def get_location
-
-		@robot = Robot.find_by(:id => params[:robotID])
-
-		if @robot
-			
-			render :file => "api/get_location.json.erb",
-				:content_type => 'application/json',
-				:status => 200 and return
-		else
-			render :nothing => true, :status => 400 and return
-		end
-
-	end
-
-	# curl -X POST -H "Content-Type: application/json" 
 	# -d '{"robotID":1, "lat": 40.443505, "lng": -79.942933, "batteryLevel": 100, "signalStrength": 100, "binFullness": 0 }'
 	# localhost:3000/api/heartbeat
 	# https://obscure-spire-79030.herokuapp.com/api/heartbeat
@@ -128,12 +89,17 @@ class ApiController < ApplicationController
 		robot = Robot.find_by(:id => params[:robotID])
 
 		if robot
-			robot.update!(
+
+			location = Location.create(
 				:latitude => params[:lat],
 				:longitude => params[:lng],
+				:robot_id => robot.id)
+
+			robot.update!(
 				:battery_level => params[:batteryLevel],
 				:signal_strength => params[:signalStrength],
-				:bin_fullness => params[:binFullness])
+				:bin_fullness => params[:binFullness],
+				:current_location_id => location.id)
 
 			render :nothing => true, :status => 200 and return
 		else
@@ -144,11 +110,11 @@ class ApiController < ApplicationController
 
 	# curl -X GET localhost:3000/api/heartbeat?robotID=1
 	# curl -X GET https://obscure-spire-79030.herokuapp.com/api/heartbeat?robotID=1
-	# Params: robotID
+	# Params: robotID, withPath
 	def get_heartbeat
 
 		@robot = Robot.find_by(:id => params[:robotID])
-
+		@with_path = params[:withPath]
 		if @robot
 			
 			render :file => "api/get_heartbeat.json.erb",
@@ -159,4 +125,5 @@ class ApiController < ApplicationController
 		end
 
 	end
+
 end

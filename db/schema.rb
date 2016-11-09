@@ -11,24 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161029173147) do
+ActiveRecord::Schema.define(version: 20161103040349) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "locations", force: :cascade do |t|
+    t.integer  "robot_id"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "robots", force: :cascade do |t|
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.decimal  "boundary_start_lat"
     t.decimal  "boundary_start_lng"
     t.decimal  "boundary_end_lat"
     t.decimal  "boundary_end_lng"
-    t.boolean  "is_running",         default: false
-    t.decimal  "latitude"
-    t.decimal  "longitude"
+    t.boolean  "is_running",          default: false
     t.integer  "battery_level"
     t.integer  "signal_strength"
     t.integer  "bin_fullness"
+    t.integer  "current_location_id"
   end
 
 end

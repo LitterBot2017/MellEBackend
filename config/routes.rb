@@ -6,10 +6,6 @@ Rails.application.routes.draw do
   post "api/running" => "api#set_running"
   get "api/running" => "api#get_running"
 
-
-  post "api/location" => "api#set_location"
-  get "api/location" => "api#get_location"
-
   post "api/heartbeat" => "api#set_heartbeat"
   get "api/heartbeat" => "api#get_heartbeat"
 
