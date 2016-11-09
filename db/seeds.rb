@@ -26,43 +26,43 @@ Location.create(
     :robot_id => robot.id)
 
 Location.create(
-    :latitude => 40.453505,
+    :latitude => 40.443605,
     :longitude => -79.942933,
     :robot_id => robot.id)
 
 Location.create(
-    :latitude => 40.453505,
-    :longitude => -79.952933,
+    :latitude => 40.443605,
+    :longitude => -79.943033,
     :robot_id => robot.id)
 
 Location.create(
     :latitude => 40.443505,
-    :longitude => -79.952933,
+    :longitude => -79.943033,
     :robot_id => robot.id)
 
 Location.create(
-    :latitude => 40.433505,
-    :longitude => -79.952933,
+    :latitude => 40.443405,
+    :longitude => -79.943033,
     :robot_id => robot.id)
 
 Location.create(
-    :latitude => 40.433505,
+    :latitude => 40.443405,
     :longitude => -79.942933,
     :robot_id => robot.id)
 
 Location.create(
-    :latitude => 40.433505,
-    :longitude => -79.932933,
+    :latitude => 40.443405,
+    :longitude => -79.942833,
     :robot_id => robot.id)
 
 Location.create(
     :latitude => 40.443505,
-    :longitude => -79.932933,
+    :longitude => -79.942833,
     :robot_id => robot.id)
 
 current_location = Location.create(
-    :latitude => 40.453505,
-    :longitude => -79.932933,
+    :latitude => 40.443605,
+    :longitude => -79.942833,
     :robot_id => robot.id)
 
 robot.update!(:current_location_id => current_location.id)
