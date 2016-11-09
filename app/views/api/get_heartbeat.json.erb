@@ -12,9 +12,9 @@
 	<% locationIndex = 0 %>
 	<% @robot.locations.each do |location| %>
 
-	{
+		{
 		"latitude": <%= location.latitude %>,
-		"longitude": <%= location.longitude %>,
+		"longitude": <%= location.longitude %>
 
 		<% locationIndex = locationIndex + 1 %>
 		<%= locationIndex == @robot.locations.count ? "}" : "}," %>
