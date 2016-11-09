@@ -10,6 +10,7 @@ Robot.destroy_all
 Location.destroy_all
 
 robot = Robot.create(
+    :id => 1,
     :boundary_start_lat => 40.4440829681405,
     :boundary_start_lng => -79.943168275,
     :boundary_end_lat => 40.4429870540925,
