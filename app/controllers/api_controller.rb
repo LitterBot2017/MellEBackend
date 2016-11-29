@@ -86,8 +86,7 @@ class ApiController < ApplicationController
 	# Params: robotID, lat, lng, batteryLevel, signalStrength, binFullness
 	def set_heartbeat
 
-		puts request.raw_post
-		params = JSON.parse(request.raw_post)
+		params = JSON.parse(request.raw_post, :symbolize_names => true)
 
 		robot = Robot.find_by(:id => params[:robotID])
 
