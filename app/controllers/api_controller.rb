@@ -92,16 +92,19 @@ class ApiController < ApplicationController
 
 		if robot
 
-			location = Location.create(
-				:latitude => params[:lat],
-				:longitude => params[:lng],
-				:robot_id => robot.id)
+			if params[:lat] != 0 && params[:lng] != 0 && params[:lat] != nil && params[:lng] != nil
+				location = Location.create(
+					:latitude => params[:lat],
+					:longitude => params[:lng],
+					:robot_id => robot.id)
+
+				robot.update!(:current_location_id => location.id)
+			end
 
 			robot.update!(
 				:battery_level => params[:batteryLevel],
 				:signal_strength => params[:signalStrength],
-				:bin_fullness => params[:binFullness],
-				:current_location_id => location.id)
+				:bin_fullness => params[:binFullness])
 
 			render :nothing => true, :status => 200 and return
 		else
