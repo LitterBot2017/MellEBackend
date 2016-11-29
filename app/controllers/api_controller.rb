@@ -86,6 +86,7 @@ class ApiController < ApplicationController
 	# Params: robotID, lat, lng, batteryLevel, signalStrength, binFullness
 	def set_heartbeat
 
+		puts request.raw_post
 		if params.values == nil
 			params = JSON.parse(request.raw_post)
 		end
