@@ -126,7 +126,42 @@ class ApiController < ApplicationController
 		else
 			render :nothing => true, :status => 400 and return
 		end
+	end
+
+	# curl -X POST -H "Content-Type: application/json" 
+	# -d '{"robotID":1, "ipAddress": "192.168.0.1:8000" }'
+	# localhost:3000/api/ipAddress
+	# https://obscure-spire-79030.herokuapp.com/api/ipAddress
+	# Params: robotID, ipAddress
+	def set_ip_address
+
+		robot = Robot.find_by(:id => params[:robotID])
+
+		if robot
+
+			robot.update!(
+				:ip_address => params[:ipAddress])
+
+			render :nothing => true, :status => 200 and return
+		else
+			render :nothing => true, :status => 400 and return
+		end
 
 	end
 
+	# curl -X GET localhost:3000/api/ipAddress?robotID=1
+	# curl -X GET https://obscure-spire-79030.herokuapp.com/api/ipAddress?robotID=1
+	# Params: robotID
+	def get_ip_address
+
+		@robot = Robot.find_by(:id => params[:robotID])
+		if @robot
+			
+			render :file => "api/get_ip_address.json.erb",
+				:content_type => 'application/json',
+				:status => 200 and return
+		else
+			render :nothing => true, :status => 400 and return
+		end
+	end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103040349) do
+ActiveRecord::Schema.define(version: 20161123213120) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20161103040349) do
     t.integer  "signal_strength"
     t.integer  "bin_fullness"
     t.integer  "current_location_id"
+    t.string   "ip_address"
   end
 
 end
