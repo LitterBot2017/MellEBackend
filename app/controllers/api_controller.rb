@@ -66,9 +66,6 @@ class ApiController < ApplicationController
 	# Params: robotID
 	def get_running
 
-		if params.values[0] == nil
-			params = JSON.parse(params.keys[0])
-		end
 		@robot = Robot.find_by(:id => params[:robotID])
 
 		if @robot
@@ -88,6 +85,10 @@ class ApiController < ApplicationController
 	# https://obscure-spire-79030.herokuapp.com/api/heartbeat
 	# Params: robotID, lat, lng, batteryLevel, signalStrength, binFullness
 	def set_heartbeat
+
+		if params.values[0] == nil
+			params = JSON.parse(params.keys[0])
+		end
 
 		robot = Robot.find_by(:id => params[:robotID])
 
