@@ -66,6 +66,9 @@ class ApiController < ApplicationController
 	# Params: robotID
 	def get_running
 
+		if params.values[0] == nil
+			params = JSON.parse(params.keys[0])
+		end
 		@robot = Robot.find_by(:id => params[:robotID])
 
 		if @robot
