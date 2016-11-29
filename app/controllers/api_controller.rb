@@ -86,8 +86,8 @@ class ApiController < ApplicationController
 	# Params: robotID, lat, lng, batteryLevel, signalStrength, binFullness
 	def set_heartbeat
 
-		if params.values[0] == nil
-			params = JSON.parse(params.keys[0])
+		if params.values == nil
+			params = JSON.parse(request.raw_post)
 		end
 
 		robot = Robot.find_by(:id => params[:robotID])
