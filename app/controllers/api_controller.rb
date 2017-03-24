@@ -61,24 +61,6 @@ class ApiController < ApplicationController
 
 	end
 
-	# curl -X GET localhost:3000/api/running?robotID=1
-	# curl -X GET https://obscure-spire-79030.herokuapp.com/api/running?robotID=1
-	# Params: robotID
-	def get_running
-
-		@robot = Robot.find_by(:id => params[:robotID])
-
-		if @robot
-			
-			render :file => "api/get_running.json.erb",
-				:content_type => 'application/json',
-				:status => 200 and return
-		else
-			render :nothing => true, :status => 400 and return
-		end
-
-	end
-
 	# curl -X POST -H "Content-Type: application/json" 
 	# -d '{"robotID":1, "lat": 40.443505, "lng": -79.942933, "batteryLevel": 100, "signalStrength": 100, "binFullness": 0 }'
 	# localhost:3000/api/heartbeat

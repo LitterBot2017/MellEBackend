@@ -4,7 +4,8 @@
 	"signalStrength": <%= @robot.signal_strength %>,
 	"binFullness": <%= @robot.bin_fullness %>,
 	"currentLatitude": <%= @robot.current_location.latitude %>,
-	"currentLongitude": <%= @robot.current_location.longitude %><%= @with_path ? "," : "" %>
+	"currentLongitude": <%= @robot.current_location.longitude %>,
+	"isRunning": <%= @robot.is_running %><%= @with_path ? "," : "" %>
 
 	<% if @with_path %>
 	
