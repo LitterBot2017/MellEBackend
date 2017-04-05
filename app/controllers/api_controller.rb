@@ -70,25 +70,27 @@ class ApiController < ApplicationController
 
 		params = JSON.parse(request.raw_post, :symbolize_names => true)
 
-		robot = Robot.find_by(:id => params[:robotID])
+		@robot = Robot.find_by(:id => params[:robotID])
 
-		if robot
+		if @robot
 
 			if params[:lat] != 0 && params[:lng] != 0 && params[:lat] != nil && params[:lng] != nil
 				location = Location.create(
 					:latitude => params[:lat],
 					:longitude => params[:lng],
-					:robot_id => robot.id)
+					:robot_id => @robot.id)
 
-				robot.update!(:current_location_id => location.id)
+				@robot.update!(:current_location_id => location.id)
 			end
 
-			robot.update!(
+			@robot.update!(
 				:battery_level => params[:batteryLevel],
 				:signal_strength => params[:signalStrength],
 				:bin_fullness => params[:binFullness])
 
-			render :nothing => true, :status => 200 and return
+			render :file => "api/get_running.json.erb",
+				:content_type => 'application/json',
+				:status => 200 and return
 		else
 			render :nothing => true, :status => 400 and return
 		end
