@@ -53,6 +53,7 @@ class ApiController < ApplicationController
 		if robot
 			robot.update!(
 				:is_running => params[:isRunning])
+			robot.locations.where.not(:id => robot.current_location_id).delete_all
 
 			render :nothing => true, :status => 200 and return
 		else
